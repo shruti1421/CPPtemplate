@@ -18,20 +18,93 @@ typedef vector<vi>		vvi;
 const int MOD = 1'000'000'007;
 const int N = 2e6+13, M = N;
 //=======================
+
+
+//To count numbers of digits in a number
+ll countDigits(ll n)
+{
+    return floor(log10(n) + 1);
+}
+
+//To find greatest common divisor of two numbers
+ll gcd (ll a, ll b)
+{
+   if(b==0)
+     return a;
+   else
+     return gcd(b,a%b);
+}
+
+//To find LCM of two numbers
+ll lcm(ll a, ll b)
+{
+   return (a*b)/gcd(a,b);
+}
+
+//To check if a number is prime or not
+bool isPrime(ll n)
+{
+   if(n==1)
+     return false;
+   if(n==2||n==3||n==5)
+     return true;
+   if(n%2==0||n%3==0)
+     return false;
+   for(ll i=5;i*i<=n;i=i+5)
+   {
+      if(n%i==0||n%(i+2)==0)
+        return false;
+   }
+   return true;
+}
+
+//To find power n of x
+ll power(ll x, ll n)
+{
+   if(n==0)
+     return 1;
+   ll temp = power(x,n/2);
+   temp = temp*temp;
+   if(n%2==0)
+     return temp;
+   else
+     return temp*x;
+   
+}
+
+//To count no. of set bits in a number
+ll setBits(ll n)
+{
+   ll res=0;
+   while(n>0)
+   {
+     n=(n&(n-1));
+     res++;
+   }
+  return res;
+}
+
 vi g[N];
-int a[N];
-int n, m, k;
+ll A[N];
+ll n, m, k;
 //=======================
 
 void solve() {
-  cin >> n;
+  cin >> n >> m;
+  cout << countDigits(n) <<'\n';
+  cout << gcd(n,m) << '\n';
+  cout << lcm(n,m) << '\n';
+  cout << isPrime(n) << isPrime(m) << '\n';
+  cout << power(n,m) << '\n';
+  cout << setBits(n) << '\n';
+  
 }
 
 int main() {
     ios_base::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t--) {
       solve();
     }
